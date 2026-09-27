@@ -1,0 +1,3892 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PlanMyDay ♡</title>
+
+
+    <style>
+
+        /* =====================================================
+           BASIC
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                "Trebuchet MS",
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #fff8fc 0%,
+                    #fffafd 50%,
+                    #fdf7ff 100%
+                );
+
+            color: #51434b;
+
+            min-height: 100vh;
+
+            transition: 0.4s;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            position: relative;
+
+            text-align: center;
+
+            padding:
+                65px
+                20px
+                55px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f9d7e6,
+                    #eadcf8
+                );
+
+            overflow: hidden;
+
+        }
+
+
+        header::before {
+
+            content: "♡";
+
+            position: absolute;
+
+            left: 8%;
+
+            top: 25px;
+
+            font-size: 45px;
+
+            color: rgba(255,255,255,0.55);
+
+        }
+
+
+        header::after {
+
+            content: "✦";
+
+            position: absolute;
+
+            right: 10%;
+
+            bottom: 25px;
+
+            font-size: 35px;
+
+            color: rgba(255,255,255,0.65);
+
+        }
+
+
+        header h1 {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 48px;
+
+            letter-spacing: 1px;
+
+            color: #70445c;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        header p {
+
+            color: #806774;
+
+            font-size: 16px;
+
+            letter-spacing: 0.3px;
+
+        }
+
+
+        .top-buttons {
+
+            margin-top: 25px;
+
+        }
+
+
+        .theme-button {
+
+            border: 1px solid
+                rgba(112,68,92,0.12);
+
+            padding:
+                11px
+                20px;
+
+            border-radius: 30px;
+
+            cursor: pointer;
+
+            background:
+                rgba(255,255,255,0.75);
+
+            color: #70445c;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 6px 18px
+                rgba(120,80,100,0.08);
+
+            transition: 0.25s;
+
+        }
+
+
+        .theme-button:hover {
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 1050px;
+
+            margin:
+                55px auto;
+
+            padding:
+                0 25px;
+
+        }
+
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .card {
+
+            position: relative;
+
+            background:
+                rgba(255,255,255,0.88);
+
+            border:
+                1px solid
+                rgba(221,184,204,0.25);
+
+            border-radius: 28px;
+
+            padding: 34px;
+
+            margin-bottom: 32px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(128,88,110,0.07);
+
+            backdrop-filter:
+                blur(8px);
+
+        }
+
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #e6abc3;
+
+            top: 22px;
+
+            right: 25px;
+
+        }
+
+
+        .card-title {
+
+            font-family:
+                Georgia,
+                serif;
+
+            color: #744b61;
+
+            font-size: 23px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =====================================================
+           WELCOME
+        ===================================================== */
+
+        .welcome {
+
+            text-align: center;
+
+            padding:
+                42px 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff5f9,
+                    #fbf5ff
+                );
+
+        }
+
+
+        .welcome h2 {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 28px;
+
+            color: #9b5e7c;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        #date {
+
+            color: #927985;
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        #timeMessage {
+
+            display: inline-block;
+
+            padding:
+                11px
+                18px;
+
+            border-radius: 30px;
+
+            background: #ffe9f2;
+
+            color: #a45e82;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+
+        /* =====================================================
+           INPUTS
+        ===================================================== */
+
+        label {
+
+            display: block;
+
+            margin:
+                20px 0 8px;
+
+            color: #765466;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding:
+                14px
+                16px;
+
+            border:
+                1px solid
+                #ead5df;
+
+            border-radius: 16px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            background: #fffafd;
+
+            color: #55464e;
+
+            transition: 0.25s;
+
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #d99ab7;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(217,154,183,0.12);
+
+        }
+
+
+        .two-columns {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                18px 22px;
+
+        }
+
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        button {
+
+            font-family: inherit;
+
+        }
+
+
+        .main-button {
+
+            margin-top: 20px;
+
+            padding:
+                13px
+                23px;
+
+            border: none;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d88eac,
+                    #c995bd
+                );
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(190,120,155,0.18);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+
+        }
+
+
+        .main-button:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(190,120,155,0.25);
+
+        }
+
+
+        .secondary-button {
+
+            padding:
+                10px
+                18px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background: #f9e6ef;
+
+            color: #82546a;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+
+        }
+
+
+        .secondary-button:hover {
+
+            background: #f2d3e1;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+
+        /* =====================================================
+           DAY MOOD
+        ===================================================== */
+
+        .day-moods {
+
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 8px;
+
+        }
+
+
+        .day-mood {
+
+            padding:
+                12px
+                17px;
+
+            border-radius: 25px;
+
+            background: #fff2f7;
+
+            border:
+                1px solid
+                #f1dbe5;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+        }
+
+
+        .day-mood:hover {
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .day-mood.selected {
+
+            background: #dfa4be;
+
+            color: white;
+
+            border-color: #dfa4be;
+
+        }
+
+
+
+        /* =====================================================
+           QUOTES
+        ===================================================== */
+
+        .quote-box {
+
+            text-align: center;
+
+            padding:
+                40px;
+
+        }
+
+
+        #quote {
+
+            max-width: 720px;
+
+            margin:
+                20px auto;
+
+            min-height: 65px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 21px;
+
+            line-height: 1.6;
+
+            color: #8c5871;
+
+        }
+
+
+        .quote-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+
+        }
+
+
+
+        /* =====================================================
+           TASKS
+        ===================================================== */
+
+        .task-form {
+
+            display: grid;
+
+            grid-template-columns:
+                2fr
+                1fr
+                1fr
+                1fr
+                auto;
+
+            gap: 12px;
+
+            align-items: end;
+
+        }
+
+
+        .task-form label {
+
+            margin-top: 0;
+
+        }
+
+
+        .task {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            background:
+                #fff7fa;
+
+            border:
+                1px solid
+                #f2dfe7;
+
+            padding:
+                17px 19px;
+
+            border-radius: 19px;
+
+            margin-top: 13px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .task:hover {
+
+            transform:
+                translateX(3px);
+
+        }
+
+
+        .task-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+        }
+
+
+        .task-left strong {
+
+            color: #694a59;
+
+        }
+
+
+        .task-left small {
+
+            color: #9b808d;
+
+            display: inline-block;
+
+            margin-top: 5px;
+
+        }
+
+
+        .task.completed {
+
+            opacity: 0.5;
+
+            text-decoration: line-through;
+
+        }
+
+
+        .delete-task {
+
+            border: none;
+
+            background: #fff0f5;
+
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .delete-task:hover {
+
+            transform: scale(1.08);
+
+        }
+
+
+
+        /* =====================================================
+           PLAN
+        ===================================================== */
+
+        #loadingMessage {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 25px;
+
+            color: #a45e82;
+
+            font-weight: bold;
+
+            animation: pulse 1s infinite;
+
+        }
+
+
+        @keyframes pulse {
+
+            50% {
+
+                opacity: 0.4;
+
+            }
+
+        }
+
+
+        #schedule {
+
+            margin-top: 25px;
+
+        }
+
+
+        .schedule-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding:
+                17px 20px;
+
+            border-left:
+                4px solid
+                #d995b3;
+
+            background:
+                #fff8fb;
+
+            margin-bottom: 11px;
+
+            border-radius:
+                0 17px 17px 0;
+
+        }
+
+
+        .schedule-time {
+
+            font-weight: bold;
+
+            color: #a45e82;
+
+            min-width: 85px;
+
+        }
+
+
+
+        /* =====================================================
+           NEXT
+        ===================================================== */
+
+        .next-task {
+
+            text-align: center;
+
+            padding:
+                40px 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff1f7,
+                    #f7f0ff
+                );
+
+        }
+
+
+        #nextTask {
+
+            margin-top: 15px;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 22px;
+
+            color: #8b526d;
+
+        }
+
+
+
+        /* =====================================================
+           WATER
+        ===================================================== */
+
+        .water {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+
+        }
+
+
+        .water-drop {
+
+            width: 50px;
+
+            height: 50px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 29px;
+
+            background: #f8edf4;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            filter: grayscale(1);
+
+            opacity: 0.4;
+
+            transition:
+                0.25s;
+
+        }
+
+
+        .water-drop:hover {
+
+            transform:
+                translateY(-3px);
+
+        }
+
+
+        .water-drop.active {
+
+            filter: grayscale(0);
+
+            opacity: 1;
+
+            background: #eaf7ff;
+
+            transform:
+                translateY(-3px)
+                scale(1.08);
+
+            box-shadow:
+                0 7px 18px
+                rgba(100,170,210,0.15);
+
+        }
+
+
+
+        /* =====================================================
+           INTERACTION MESSAGE
+        ===================================================== */
+
+        .interaction-message {
+
+            margin:
+                23px auto 0;
+
+            padding:
+                16px 20px;
+
+            max-width: 700px;
+
+            border-radius: 18px;
+
+            background:
+                #fff0f6;
+
+            color: #a45e82;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            text-align: center;
+
+            min-height: 52px;
+
+            opacity: 0;
+
+            transform:
+                translateY(8px);
+
+            transition:
+                all 0.3s ease;
+
+        }
+
+
+        .interaction-message.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+
+        /* =====================================================
+           FEELINGS
+        ===================================================== */
+
+        .moods {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 15px;
+
+            margin-top: 22px;
+
+        }
+
+
+        .mood {
+
+            text-align: center;
+
+            padding:
+                22px 12px;
+
+            background:
+                #fff7fa;
+
+            border:
+                1px solid
+                #f1dfe7;
+
+            border-radius: 22px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+        }
+
+
+        .mood:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 10px 22px
+                rgba(130,80,110,0.08);
+
+        }
+
+
+        .mood.selected {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5aac3,
+                    #d9b4d3
+                );
+
+            color: white;
+
+            border-color:
+                transparent;
+
+        }
+
+
+        .mood-emoji {
+
+            display: block;
+
+            font-size: 34px;
+
+            margin-bottom: 9px;
+
+        }
+
+
+
+        /* =====================================================
+           PROGRESS
+        ===================================================== */
+
+        .progress-container {
+
+            background:
+                #f3e5ec;
+
+            height: 20px;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            margin-top: 22px;
+
+        }
+
+
+        .progress-bar {
+
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d989aa,
+                    #cba0d1
+                );
+
+            border-radius: 30px;
+
+            transition: 0.5s;
+
+        }
+
+
+        #progressText {
+
+            margin-top: 13px;
+
+            text-align: center;
+
+            color: #947583;
+
+            font-size: 14px;
+
+        }
+
+
+
+        /* =====================================================
+           TIMER
+        ===================================================== */
+
+        .timer {
+
+            text-align: center;
+
+            padding:
+                42px 30px;
+
+        }
+
+
+        #timerDisplay {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 60px;
+
+            font-weight: bold;
+
+            color: #a45e82;
+
+            margin:
+                20px 0;
+
+            letter-spacing: 3px;
+
+        }
+
+
+
+        /* =====================================================
+           REFLECTION
+        ===================================================== */
+
+        textarea {
+
+            resize: vertical;
+
+            min-height: 120px;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        /* =====================================================
+           CELEBRATION
+        ===================================================== */
+
+        #celebration {
+
+            display: none;
+
+            text-align: center;
+
+            padding:
+                45px 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0f6,
+                    #f5edff
+                );
+
+        }
+
+
+        #celebration h2 {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 30px;
+
+            color: #a45e82;
+
+            margin-bottom: 12px;
+
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            text-align: center;
+
+            padding:
+                25px
+                20px
+                50px;
+
+            color: #a18b95;
+
+            font-size: 13px;
+
+        }
+
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #211b20,
+                    #261f27
+                );
+
+            color: #f5e8ee;
+
+        }
+
+
+        body.dark header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #493340,
+                    #403448
+                );
+
+        }
+
+
+        body.dark header h1 {
+
+            color: #f6d8e6;
+
+        }
+
+
+        body.dark header p {
+
+            color: #d8bdca;
+
+        }
+
+
+        body.dark .card {
+
+            background:
+                rgba(49,40,47,0.95);
+
+            border-color:
+                rgba(255,255,255,0.04);
+
+            box-shadow:
+                0 15px 45px
+                rgba(0,0,0,0.15);
+
+        }
+
+
+        body.dark .card-title {
+
+            color: #f1abc8;
+
+        }
+
+
+        body.dark label {
+
+            color: #e5bdcd;
+
+        }
+
+
+        body.dark input,
+        body.dark select,
+        body.dark textarea {
+
+            background: #3a3037;
+
+            color: white;
+
+            border-color: #56454f;
+
+        }
+
+
+        body.dark .task {
+
+            background: #392f35;
+
+            border-color: #4d3d45;
+
+        }
+
+
+        body.dark .task-left strong {
+
+            color: #f2dce5;
+
+        }
+
+
+        body.dark .task-left small {
+
+            color: #c6a9b6;
+
+        }
+
+
+        body.dark .schedule-item {
+
+            background: #392f35;
+
+        }
+
+
+        body.dark .next-task {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3e3039,
+                    #382f40
+                );
+
+        }
+
+
+        body.dark .mood {
+
+            background: #3a3037;
+
+            border-color: #4d3d45;
+
+        }
+
+
+        body.dark .water-drop {
+
+            background: #39333a;
+
+        }
+
+
+        body.dark .interaction-message {
+
+            background: #4a3843;
+
+            color: #f1a8c8;
+
+        }
+
+
+        body.dark .progress-container {
+
+            background: #4c3f47;
+
+        }
+
+
+        body.dark .welcome {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3a2d35,
+                    #352e3d
+                );
+
+        }
+
+
+        body.dark #timeMessage {
+
+            background: #49343f;
+
+            color: #f1b2cd;
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .task-form {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .moods {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .two-columns {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            header {
+
+                padding:
+                    50px
+                    18px
+                    45px;
+
+            }
+
+
+            header h1 {
+
+                font-size: 36px;
+
+            }
+
+
+            .container {
+
+                margin:
+                    35px auto;
+
+                padding:
+                    0 15px;
+
+            }
+
+
+            .card {
+
+                padding:
+                    25px 20px;
+
+                border-radius:
+                    23px;
+
+                margin-bottom:
+                    23px;
+
+            }
+
+
+            .moods {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .water-drop {
+
+                width: 45px;
+
+                height: 45px;
+
+            }
+
+
+            #timerDisplay {
+
+                font-size: 48px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<header>
+
+    <h1>🌷 PlanMyDay</h1>
+
+    <p>
+        A little plan for a softer, happier day.
+    </p>
+
+    <div class="top-buttons">
+
+        <button
+            class="theme-button"
+            onclick="toggleTheme()"
+        >
+            🌙 Dark Mode
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <!-- WELCOME -->
+
+    <div class="card welcome">
+
+        <h2>
+            Hello,
+            <span id="displayName">there</span> ♡
+        </h2>
+
+        <p id="date"></p>
+
+        <p id="timeMessage">
+            Let's make today a good one.
+        </p>
+
+    </div>
+
+
+
+    <!-- ABOUT -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            🌸 About your day
+        </h2>
+
+
+        <label>
+            Your name
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="What should I call you? ♡"
+            oninput="saveData(); updatePersonalInfo();"
+        >
+
+
+        <label>
+            What's your main goal today?
+        </label>
+
+        <input
+            type="text"
+            id="goal"
+            placeholder="Something you'd love to finish today..."
+            oninput="saveData()"
+        >
+
+
+        <label>
+            How do you feel about today?
+        </label>
+
+        <div class="day-moods">
+
+            <div
+                class="day-mood"
+                onclick="selectDayMood(this,'😊 Happy')"
+            >
+                😊 Happy
+            </div>
+
+            <div
+                class="day-mood"
+                onclick="selectDayMood(this,'🌷 Calm')"
+            >
+                🌷 Calm
+            </div>
+
+            <div
+                class="day-mood"
+                onclick="selectDayMood(this,'🔥 Motivated')"
+            >
+                🔥 Motivated
+            </div>
+
+            <div
+                class="day-mood"
+                onclick="selectDayMood(this,'😴 Tired')"
+            >
+                😴 Tired
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ROUTINE -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            ⏰ Your little routine
+        </h2>
+
+        <div class="two-columns">
+
+            <div>
+
+                <label>Wake up</label>
+
+                <input
+                    type="time"
+                    id="wakeTime"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Breakfast</label>
+
+                <input
+                    type="time"
+                    id="breakfastTime"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Morning break</label>
+
+                <input
+                    type="time"
+                    id="morningBreak"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Lunch</label>
+
+                <input
+                    type="time"
+                    id="lunchTime"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Snack</label>
+
+                <input
+                    type="time"
+                    id="snackTime"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Afternoon break</label>
+
+                <input
+                    type="time"
+                    id="afternoonBreak"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Dinner</label>
+
+                <input
+                    type="time"
+                    id="dinnerTime"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Sleep</label>
+
+                <input
+                    type="time"
+                    id="sleepTime"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUOTES -->
+
+    <div class="card quote-box">
+
+        <h2 class="card-title">
+            ✨ A little reminder for you
+        </h2>
+
+        <p id="quote"></p>
+
+        <div class="quote-buttons">
+
+            <button
+                class="secondary-button"
+                onclick="previousQuote()"
+            >
+                ← Previous
+            </button>
+
+            <button
+                class="secondary-button"
+                onclick="nextQuote()"
+            >
+                Next →
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TASKS -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            📝 Things I want to do
+        </h2>
+
+        <div class="task-form">
+
+            <div>
+
+                <label>Task</label>
+
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="What needs to be done?"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Category</label>
+
+                <select id="taskCategory">
+
+                    <option>📚 Study</option>
+
+                    <option>💼 Work</option>
+
+                    <option>🏠 Personal</option>
+
+                    <option>🧹 Chores</option>
+
+                    <option>🎨 Creative</option>
+
+                    <option>🌷 Self-care</option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>Priority</label>
+
+                <select id="taskPriority">
+
+                    <option>High</option>
+
+                    <option>Medium</option>
+
+                    <option>Low</option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>Duration</label>
+
+                <select id="taskDuration">
+
+                    <option>15 min</option>
+
+                    <option>30 min</option>
+
+                    <option>45 min</option>
+
+                    <option>1 hour</option>
+
+                    <option>2 hours</option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="main-button"
+                onclick="addTask()"
+            >
+                + Add
+            </button>
+
+        </div>
+
+
+        <div id="taskList"></div>
+
+    </div>
+
+
+
+    <!-- PLAN -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            🌷 Put your day together
+        </h2>
+
+        <p>
+            Let PlanMyDay arrange your routine and tasks.
+        </p>
+
+
+        <button
+            class="main-button"
+            onclick="generateSchedule()"
+        >
+            ✨ Plan My Day
+        </button>
+
+
+        <div id="loadingMessage">
+            Organizing your day...
+        </div>
+
+
+        <div id="schedule"></div>
+
+    </div>
+
+
+
+    <!-- NEXT -->
+
+    <div class="card next-task">
+
+        <h2 class="card-title">
+            🔔 What's next?
+        </h2>
+
+        <p id="nextTask">
+            Add a task and I'll show you what's next. ♡
+        </p>
+
+    </div>
+
+
+
+    <!-- WATER -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            💧 A little hydration
+        </h2>
+
+        <p>
+            Tap a drop whenever you drink a glass.
+        </p>
+
+
+        <div
+            class="water"
+            id="waterTracker"
+        >
+
+            <span
+                class="water-drop"
+                onclick="toggleWater(this)"
+            >
+                💧
+            </span>
+
+            <span
+                class="water-drop"
+                onclick="toggleWater(this)"
+            >
+                💧
+            </span>
+
+            <span
+                class="water-drop"
+                onclick="toggleWater(this)"
+            >
+                💧
+            </span>
+
+            <span
+                class="water-drop"
+                onclick="toggleWater(this)"
+            >
+                💧
+            </span>
+
+            <span
+                class="water-drop"
+                onclick="toggleWater(this)"
+            >
+                💧
+            </span>
+
+            <span
+                class="water-drop"
+                onclick="toggleWater(this)"
+            >
+                💧
+            </span>
+
+            <span
+                class="water-drop"
+                onclick="toggleWater(this)"
+            >
+                💧
+            </span>
+
+            <span
+                class="water-drop"
+                onclick="toggleWater(this)"
+            >
+                💧
+            </span>
+
+        </div>
+
+
+        <div
+            class="interaction-message show"
+            id="waterMessage"
+        >
+            💧 Start with your first glass!
+        </div>
+
+    </div>
+
+
+
+    <!-- FEELING -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            😊 Check in with yourself
+        </h2>
+
+        <p>
+            There is no wrong answer. Just choose what feels right.
+        </p>
+
+
+        <div class="moods">
+
+            <div
+                class="mood"
+                onclick="selectFeeling(this,'great')"
+            >
+
+                <span class="mood-emoji">
+                    😊
+                </span>
+
+                Great
+
+            </div>
+
+
+            <div
+                class="mood"
+                onclick="selectFeeling(this,'good')"
+            >
+
+                <span class="mood-emoji">
+                    🙂
+                </span>
+
+                Good
+
+            </div>
+
+
+            <div
+                class="mood"
+                onclick="selectFeeling(this,'okay')"
+            >
+
+                <span class="mood-emoji">
+                    😐
+                </span>
+
+                Okay
+
+            </div>
+
+
+            <div
+                class="mood"
+                onclick="selectFeeling(this,'tired')"
+            >
+
+                <span class="mood-emoji">
+                    😴
+                </span>
+
+                Tired
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="interaction-message show"
+            id="moodMessage"
+        >
+            🌷 Choose how you're feeling today.
+        </div>
+
+    </div>
+
+
+
+    <!-- PROGRESS -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            📊 Your day so far
+        </h2>
+
+        <p>
+            Every little thing counts. ♡
+        </p>
+
+
+        <div class="progress-container">
+
+            <div
+                class="progress-bar"
+                id="progressBar"
+            ></div>
+
+        </div>
+
+
+        <p id="progressText">
+            0% complete
+        </p>
+
+    </div>
+
+
+
+    <!-- TIMER -->
+
+    <div class="card timer">
+
+        <h2 class="card-title">
+            🍅 A little focus time
+        </h2>
+
+        <p>
+            Give yourself 25 quiet minutes.
+        </p>
+
+
+        <div id="timerDisplay">
+            25:00
+        </div>
+
+
+        <button
+            class="main-button"
+            onclick="startTimer()"
+        >
+            Start Focus
+        </button>
+
+
+        <button
+            class="secondary-button"
+            onclick="resetTimer()"
+        >
+            Reset
+        </button>
+
+    </div>
+
+
+
+    <!-- REFLECTION -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            🌙 A thought before you go
+        </h2>
+
+        <p>
+            What went well today?
+        </p>
+
+
+        <textarea
+            id="reflection"
+            placeholder="Write something you're proud of..."
+        ></textarea>
+
+
+        <button
+            class="main-button"
+            onclick="saveReflection()"
+        >
+            Save My Thought ♡
+        </button>
+
+    </div>
+
+
+
+    <!-- CELEBRATION -->
+
+    <div
+        class="card"
+        id="celebration"
+    >
+
+        <h2>
+            🎉 You did it!
+        </h2>
+
+        <p>
+            Look at everything you accomplished today.
+            You should be proud of yourself. 🌷
+        </p>
+
+    </div>
+
+
+
+    <!-- TOMORROW -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            🌅 A fresh start tomorrow
+        </h2>
+
+        <p>
+            Start a new day while keeping your personal preferences.
+        </p>
+
+
+        <button
+            class="main-button"
+            onclick="prepareTomorrow()"
+        >
+            Plan Tomorrow
+        </button>
+
+    </div>
+
+
+
+    <!-- CLEAR -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            🗑️ Saved information
+        </h2>
+
+        <p>
+            Your PlanMyDay information is saved in this browser.
+        </p>
+
+
+        <button
+            class="secondary-button"
+            onclick="clearInformation()"
+        >
+            Clear Saved Information
+        </button>
+
+    </div>
+
+
+</main>
+
+
+
+<footer>
+
+    Made with ♡ while learning HTML, CSS & JavaScript.
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================================================
+   QUOTES
+===================================================== */
+
+const quotes = [
+
+    "Believe you can, and you're already halfway there. ✨",
+
+    "Small steps every day create big results. 🌷",
+
+    "You don't have to be perfect. You just have to keep going. 🌱",
+
+    "Your future self will thank you for what you do today. 💕",
+
+    "Progress is progress, no matter how small. 🌸",
+
+    "A calm mind can create wonderful things. ☁️",
+
+    "You are capable of more than you think. ✨",
+
+    "Start where you are. Use what you have. Do what you can. 🌷",
+
+    "Make today count. 💫",
+
+    "You are doing better than you think. 💕"
+
+];
+
+
+let quoteIndex = 0;
+
+
+function showQuote() {
+
+    document.getElementById("quote").innerText =
+        quotes[quoteIndex];
+
+}
+
+
+function nextQuote() {
+
+    quoteIndex++;
+
+    if (quoteIndex >= quotes.length) {
+
+        quoteIndex = 0;
+
+    }
+
+    showQuote();
+
+}
+
+
+function previousQuote() {
+
+    quoteIndex--;
+
+    if (quoteIndex < 0) {
+
+        quoteIndex = quotes.length - 1;
+
+    }
+
+    showQuote();
+
+}
+
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function showDate() {
+
+    const today = new Date();
+
+
+    const options = {
+
+        weekday: "long",
+
+        year: "numeric",
+
+        month: "long",
+
+        day: "numeric"
+
+    };
+
+
+    document.getElementById("date").innerText =
+
+        today.toLocaleDateString(
+            "en-US",
+            options
+        );
+
+}
+
+
+
+/* =====================================================
+   PERSONAL INFO
+===================================================== */
+
+function updatePersonalInfo() {
+
+    const name =
+        document.getElementById("name").value;
+
+
+    document.getElementById(
+        "displayName"
+    ).innerText =
+
+        name || "there";
+
+
+    updateTimeMessage();
+
+}
+
+
+
+/* =====================================================
+   TIME MESSAGE
+===================================================== */
+
+function updateTimeMessage() {
+
+    const hour =
+        new Date().getHours();
+
+
+    const name =
+        document.getElementById(
+            "name"
+        ).value || "there";
+
+
+    let message;
+
+
+    if (
+        hour >= 5 &&
+        hour < 12
+    ) {
+
+        message =
+            "Have a great day " +
+            name +
+            "! 🌞";
+
+    }
+
+    else if (
+        hour >= 12 &&
+        hour < 17
+    ) {
+
+        message =
+            "You are doing great " +
+            name +
+            "! 🌷";
+
+    }
+
+    else if (
+        hour >= 17 &&
+        hour < 21
+    ) {
+
+        message =
+            "Get ready to wind up " +
+            name +
+            "! 🌙";
+
+    }
+
+    else {
+
+        message =
+            "Have sweet dreams " +
+            name +
+            "! 🌙";
+
+    }
+
+
+    document.getElementById(
+        "timeMessage"
+    ).innerText = message;
+
+}
+
+
+
+/* =====================================================
+   DAY MOOD
+===================================================== */
+
+function selectDayMood(
+    element,
+    mood
+) {
+
+    document
+        .querySelectorAll(".day-mood")
+        .forEach(function(item) {
+
+            item.classList.remove(
+                "selected"
+            );
+
+        });
+
+
+    element.classList.add(
+        "selected"
+    );
+
+
+    localStorage.setItem(
+        "planMyDayMood",
+        mood
+    );
+
+
+    saveData();
+
+}
+
+
+
+/* =====================================================
+   TASKS
+===================================================== */
+
+let tasks = [];
+
+
+function addTask() {
+
+    const taskText =
+        document
+            .getElementById("taskInput")
+            .value
+            .trim();
+
+
+    const category =
+        document.getElementById(
+            "taskCategory"
+        ).value;
+
+
+    const priority =
+        document.getElementById(
+            "taskPriority"
+        ).value;
+
+
+    const duration =
+        document.getElementById(
+            "taskDuration"
+        ).value;
+
+
+    if (taskText === "") {
+
+        alert(
+            "Please enter a task first ♡"
+        );
+
+        return;
+
+    }
+
+
+    tasks.push({
+
+        id: Date.now(),
+
+        text: taskText,
+
+        category: category,
+
+        priority: priority,
+
+        duration: duration,
+
+        completed: false
+
+    });
+
+
+    document.getElementById(
+        "taskInput"
+    ).value = "";
+
+
+    displayTasks();
+
+    updateProgress();
+
+    saveData();
+
+}
+
+
+
+function displayTasks() {
+
+    const list =
+        document.getElementById(
+            "taskList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    tasks.forEach(function(task) {
+
+        const taskDiv =
+            document.createElement(
+                "div"
+            );
+
+
+        taskDiv.className =
+            "task";
+
+
+        if (task.completed) {
+
+            taskDiv.classList.add(
+                "completed"
+            );
+
+        }
+
+
+        taskDiv.innerHTML = `
+
+            <div class="task-left">
+
+                <input
+                    type="checkbox"
+                    ${task.completed ? "checked" : ""}
+                    onchange="completeTask(${task.id})"
+                >
+
+                <div>
+
+                    <strong>
+                        ${task.text}
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        ${task.category}
+                        ·
+                        ${task.priority}
+                        ·
+                        ${task.duration}
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="delete-task"
+                onclick="deleteTask(${task.id})"
+            >
+                🗑️
+            </button>
+
+        `;
+
+
+        list.appendChild(taskDiv);
+
+    });
+
+
+    showNextTask();
+
+}
+
+
+
+function completeTask(id) {
+
+    const task =
+        tasks.find(function(item) {
+
+            return item.id === id;
+
+        });
+
+
+    if (task) {
+
+        task.completed =
+            !task.completed;
+
+    }
+
+
+    displayTasks();
+
+    updateProgress();
+
+    saveData();
+
+}
+
+
+
+function deleteTask(id) {
+
+    tasks =
+        tasks.filter(function(task) {
+
+            return task.id !== id;
+
+        });
+
+
+    displayTasks();
+
+    updateProgress();
+
+    saveData();
+
+}
+
+
+
+/* =====================================================
+   PLAN
+===================================================== */
+
+function generateSchedule() {
+
+    const loading =
+        document.getElementById(
+            "loadingMessage"
+        );
+
+
+    const schedule =
+        document.getElementById(
+            "schedule"
+        );
+
+
+    loading.style.display =
+        "block";
+
+
+    schedule.innerHTML = "";
+
+
+    const messages = [
+
+        "Organizing your day...",
+
+        "Adding your breaks...",
+
+        "Putting your priorities first...",
+
+        "Finding the right balance...",
+
+        "Your day is almost ready..."
+
+    ];
+
+
+    let index = 0;
+
+
+    const interval =
+        setInterval(function() {
+
+            loading.innerText =
+                messages[index];
+
+
+            index++;
+
+
+            if (
+                index >=
+                messages.length
+            ) {
+
+                clearInterval(
+                    interval
+                );
+
+
+                setTimeout(function() {
+
+                    loading.style.display =
+                        "none";
+
+
+                    buildSchedule();
+
+                }, 500);
+
+            }
+
+        }, 500);
+
+}
+
+
+
+function buildSchedule() {
+
+    const schedule =
+        document.getElementById(
+            "schedule"
+        );
+
+
+    schedule.innerHTML = "";
+
+
+    const routine = [
+
+        ["Wake up", "wakeTime"],
+
+        ["Breakfast", "breakfastTime"],
+
+        ["Morning break", "morningBreak"],
+
+        ["Lunch", "lunchTime"],
+
+        ["Snack", "snackTime"],
+
+        ["Afternoon break", "afternoonBreak"],
+
+        ["Dinner", "dinnerTime"],
+
+        ["Sleep", "sleepTime"]
+
+    ];
+
+
+    routine.forEach(function(item) {
+
+        const value =
+            document.getElementById(
+                item[1]
+            ).value;
+
+
+        if (value) {
+
+            addScheduleItem(
+                value,
+                item[0]
+            );
+
+        }
+
+    });
+
+
+    tasks.forEach(function(task) {
+
+        addScheduleItem(
+            "Task",
+            task.text +
+            " (" +
+            task.duration +
+            ")"
+        );
+
+    });
+
+
+    showNextTask();
+
+}
+
+
+
+function addScheduleItem(
+    time,
+    text
+) {
+
+    const schedule =
+        document.getElementById(
+            "schedule"
+        );
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className =
+        "schedule-item";
+
+
+    div.innerHTML = `
+
+        <div class="schedule-time">
+            ${time}
+        </div>
+
+        <div>
+            ${text}
+        </div>
+
+    `;
+
+
+    schedule.appendChild(div);
+
+}
+
+
+
+/* =====================================================
+   NEXT TASK
+===================================================== */
+
+function showNextTask() {
+
+    const next =
+        document.getElementById(
+            "nextTask"
+        );
+
+
+    const unfinished =
+        tasks.filter(function(task) {
+
+            return !task.completed;
+
+        });
+
+
+    if (
+        unfinished.length === 0
+    ) {
+
+        next.innerText =
+            "🎉 You've completed all your tasks!";
+
+        return;
+
+    }
+
+
+    next.innerText =
+        unfinished[0].text +
+        " · " +
+        unfinished[0].duration;
+
+}
+
+
+
+/* =====================================================
+   WATER
+===================================================== */
+
+function toggleWater(element) {
+
+    element.classList.toggle(
+        "active"
+    );
+
+
+    const glasses =
+        document.querySelectorAll(
+            ".water-drop.active"
+        ).length;
+
+
+    const messageBox =
+        document.getElementById(
+            "waterMessage"
+        );
+
+
+    let message;
+
+
+    if (glasses === 0) {
+
+        message =
+            "💧 Start with your first glass!";
+
+    }
+
+    else if (glasses === 1) {
+
+        message =
+            "💧 Great start! One glass down — keep going!";
+
+    }
+
+    else if (glasses === 2) {
+
+        message =
+            "🌷 Nice! You're building a healthy little habit.";
+
+    }
+
+    else if (glasses === 3) {
+
+        message =
+            "✨ You're doing great! Keep that water nearby.";
+
+    }
+
+    else if (glasses === 4) {
+
+        message =
+            "💧 Halfway there! Look at you staying hydrated!";
+
+    }
+
+    else if (glasses === 5) {
+
+        message =
+            "🌸 Amazing! Your future self will thank you.";
+
+    }
+
+    else if (glasses === 6) {
+
+        message =
+            "✨ Almost there! Just a little more.";
+
+    }
+
+    else if (glasses === 7) {
+
+        message =
+            "🌷 WOW! Seven glasses! You're doing wonderfully!";
+
+    }
+
+    else {
+
+        message =
+            "🎉 You did it! 8 glasses — hydration goal complete!";
+
+    }
+
+
+    messageBox.innerText =
+        message;
+
+
+    messageBox.classList.remove(
+        "show"
+    );
+
+
+    setTimeout(function() {
+
+        messageBox.classList.add(
+            "show"
+        );
+
+    }, 50);
+
+
+    updateProgress();
+
+    saveData();
+
+}
+
+
+
+/* =====================================================
+   FEELING
+===================================================== */
+
+function selectFeeling(
+    element,
+    feeling
+) {
+
+    element.parentElement
+        .querySelectorAll(".mood")
+        .forEach(function(item) {
+
+            item.classList.remove(
+                "selected"
+            );
+
+        });
+
+
+    element.classList.add(
+        "selected"
+    );
+
+
+    const messages = {
+
+        great:
+            "✨ That's wonderful! Hold onto that good energy today.",
+
+        good:
+            "🌷 Glad you're feeling good! Let's make the rest of the day even better.",
+
+        okay:
+            "🌱 That's okay. You don't have to have a perfect day. Just take it one step at a time.",
+
+        tired:
+            "☕ Sounds like you need a little kindness today. Take your breaks and don't push yourself too hard."
+
+    };
+
+
+    const box =
+        document.getElementById(
+            "moodMessage"
+        );
+
+
+    box.innerText =
+        messages[feeling];
+
+
+    box.classList.remove(
+        "show"
+    );
+
+
+    setTimeout(function() {
+
+        box.classList.add(
+            "show"
+        );
+
+    }, 50);
+
+
+    saveData();
+
+}
+
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+function updateProgress() {
+
+    let total =
+        tasks.length;
+
+
+    let completed = 0;
+
+
+    tasks.forEach(function(task) {
+
+        if (task.completed) {
+
+            completed++;
+
+        }
+
+    });
+
+
+    const water =
+        document.querySelectorAll(
+            ".water-drop.active"
+        ).length;
+
+
+    if (water > 0) {
+
+        total++;
+
+        completed++;
+
+    }
+
+
+    let percentage = 0;
+
+
+    if (total > 0) {
+
+        percentage =
+            Math.round(
+                completed /
+                total *
+                100
+            );
+
+    }
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percentage + "%";
+
+
+    document.getElementById(
+        "progressText"
+    ).innerText =
+        percentage +
+        "% complete";
+
+
+    checkCompletion(
+        percentage
+    );
+
+}
+
+
+
+function checkCompletion(
+    percentage
+) {
+
+    const celebration =
+        document.getElementById(
+            "celebration"
+        );
+
+
+    if (percentage >= 100) {
+
+        celebration.style.display =
+            "block";
+
+    }
+
+    else {
+
+        celebration.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+function toggleTheme() {
+
+    document.body.classList.toggle(
+        "dark"
+    );
+
+
+    localStorage.setItem(
+        "planMyDayDarkMode",
+        document.body.classList.contains(
+            "dark"
+        )
+    );
+
+}
+
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+let timerSeconds =
+    25 * 60;
+
+
+let timerInterval =
+    null;
+
+
+function updateTimer() {
+
+    const minutes =
+        Math.floor(
+            timerSeconds / 60
+        );
+
+
+    const seconds =
+        timerSeconds % 60;
+
+
+    document.getElementById(
+        "timerDisplay"
+    ).innerText =
+
+        String(minutes).padStart(
+            2,
+            "0"
+        )
+
+        +
+
+        ":"
+
+        +
+
+        String(seconds).padStart(
+            2,
+            "0"
+        );
+
+}
+
+
+
+function startTimer() {
+
+    if (
+        timerInterval !== null
+    ) {
+
+        return;
+
+    }
+
+
+    timerInterval =
+        setInterval(function() {
+
+            if (
+                timerSeconds > 0
+            ) {
+
+                timerSeconds--;
+
+                updateTimer();
+
+            }
+
+            else {
+
+                clearInterval(
+                    timerInterval
+                );
+
+                timerInterval =
+                    null;
+
+                alert(
+                    "🎉 Focus session complete! Take a little break."
+                );
+
+            }
+
+        }, 1000);
+
+}
+
+
+
+function resetTimer() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    timerInterval =
+        null;
+
+
+    timerSeconds =
+        25 * 60;
+
+
+    updateTimer();
+
+}
+
+
+
+/* =====================================================
+   REFLECTION
+===================================================== */
+
+function saveReflection() {
+
+    const reflection =
+        document.getElementById(
+            "reflection"
+        ).value;
+
+
+    localStorage.setItem(
+        "planMyDayReflection",
+        reflection
+    );
+
+
+    alert(
+        "🌷 Your thought has been saved!"
+    );
+
+}
+
+
+
+/* =====================================================
+   TOMORROW
+===================================================== */
+
+function prepareTomorrow() {
+
+    if (
+        !confirm(
+            "Start a fresh day? Your name and routine will stay saved."
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    tasks = [];
+
+
+    document.getElementById(
+        "goal"
+    ).value = "";
+
+
+    document.getElementById(
+        "reflection"
+    ).value = "";
+
+
+    document
+        .querySelectorAll(
+            ".water-drop"
+        )
+        .forEach(function(drop) {
+
+            drop.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(
+            ".mood"
+        )
+        .forEach(function(mood) {
+
+            mood.classList.remove(
+                "selected"
+            );
+
+        });
+
+
+    document.getElementById(
+        "waterMessage"
+    ).innerText =
+        "💧 Start with your first glass!";
+
+
+    document.getElementById(
+        "moodMessage"
+    ).innerText =
+        "🌷 Choose how you're feeling today.";
+
+
+    displayTasks();
+
+    updateProgress();
+
+
+    document.getElementById(
+        "schedule"
+    ).innerHTML = "";
+
+
+    saveData();
+
+
+    alert(
+        "🌅 A fresh day is ready!"
+    );
+
+}
+
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveData() {
+
+    const data = {
+
+        name:
+            document.getElementById(
+                "name"
+            ).value,
+
+        goal:
+            document.getElementById(
+                "goal"
+            ).value,
+
+        tasks:
+            tasks,
+
+        reflection:
+            document.getElementById(
+                "reflection"
+            ).value,
+
+        wakeTime:
+            document.getElementById(
+                "wakeTime"
+            ).value,
+
+        breakfastTime:
+            document.getElementById(
+                "breakfastTime"
+            ).value,
+
+        morningBreak:
+            document.getElementById(
+                "morningBreak"
+            ).value,
+
+        lunchTime:
+            document.getElementById(
+                "lunchTime"
+            ).value,
+
+        snackTime:
+            document.getElementById(
+                "snackTime"
+            ).value,
+
+        afternoonBreak:
+            document.getElementById(
+                "afternoonBreak"
+            ).value,
+
+        dinnerTime:
+            document.getElementById(
+                "dinnerTime"
+            ).value,
+
+        sleepTime:
+            document.getElementById(
+                "sleepTime"
+            ).value,
+
+        water:
+            document.querySelectorAll(
+                ".water-drop.active"
+            ).length
+
+    };
+
+
+    localStorage.setItem(
+        "planMyDayData",
+        JSON.stringify(data)
+    );
+
+}
+
+
+
+/* =====================================================
+   LOAD
+===================================================== */
+
+function loadData() {
+
+    const saved =
+        localStorage.getItem(
+            "planMyDayData"
+        );
+
+
+    if (!saved) {
+
+        return;
+
+    }
+
+
+    const data =
+        JSON.parse(saved);
+
+
+    document.getElementById(
+        "name"
+    ).value =
+        data.name || "";
+
+
+    document.getElementById(
+        "goal"
+    ).value =
+        data.goal || "";
+
+
+    document.getElementById(
+        "reflection"
+    ).value =
+        data.reflection || "";
+
+
+    document.getElementById(
+        "wakeTime"
+    ).value =
+        data.wakeTime || "";
+
+
+    document.getElementById(
+        "breakfastTime"
+    ).value =
+        data.breakfastTime || "";
+
+
+    document.getElementById(
+        "morningBreak"
+    ).value =
+        data.morningBreak || "";
+
+
+    document.getElementById(
+        "lunchTime"
+    ).value =
+        data.lunchTime || "";
+
+
+    document.getElementById(
+        "snackTime"
+    ).value =
+        data.snackTime || "";
+
+
+    document.getElementById(
+        "afternoonBreak"
+    ).value =
+        data.afternoonBreak || "";
+
+
+    document.getElementById(
+        "dinnerTime"
+    ).value =
+        data.dinnerTime || "";
+
+
+    document.getElementById(
+        "sleepTime"
+    ).value =
+        data.sleepTime || "";
+
+
+    tasks =
+        data.tasks || [];
+
+
+    displayTasks();
+
+
+    const drops =
+        document.querySelectorAll(
+            ".water-drop"
+        );
+
+
+    const waterCount =
+        data.water || 0;
+
+
+    drops.forEach(
+        function(drop,index) {
+
+            if (
+                index < waterCount
+            ) {
+
+                drop.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    if (
+        waterCount > 0
+    ) {
+
+        updateWaterMessage(
+            waterCount
+        );
+
+    }
+
+
+    if (
+        localStorage.getItem(
+            "planMyDayDarkMode"
+        ) === "true"
+    ) {
+
+        document.body.classList.add(
+            "dark"
+        );
+
+    }
+
+
+    updatePersonalInfo();
+
+    updateProgress();
+
+}
+
+
+
+/* =====================================================
+   WATER MESSAGE ON LOAD
+===================================================== */
+
+function updateWaterMessage(
+    glasses
+) {
+
+    const messages = [
+
+        "",
+
+        "💧 Great start! One glass down — keep going!",
+
+        "🌷 Nice! You're building a healthy little habit.",
+
+        "✨ You're doing great! Keep that water nearby.",
+
+        "💧 Halfway there! Look at you staying hydrated!",
+
+        "🌸 Amazing! Your future self will thank you.",
+
+        "✨ Almost there! Just a little more.",
+
+        "🌷 WOW! Seven glasses! You're doing wonderfully!",
+
+        "🎉 You did it! 8 glasses — hydration goal complete!"
+
+    ];
+
+
+    const box =
+        document.getElementById(
+            "waterMessage"
+        );
+
+
+    box.innerText =
+        messages[glasses] || messages[0];
+
+
+    box.classList.add(
+        "show"
+    );
+
+}
+
+
+
+/* =====================================================
+   CLEAR
+===================================================== */
+
+function clearInformation() {
+
+    if (
+        !confirm(
+            "Are you sure you want to clear your saved PlanMyDay information?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "planMyDayData"
+    );
+
+
+    localStorage.removeItem(
+        "planMyDayMood"
+    );
+
+
+    localStorage.removeItem(
+        "planMyDayReflection"
+    );
+
+
+    localStorage.removeItem(
+        "planMyDayDarkMode"
+    );
+
+
+    location.reload();
+
+}
+
+
+
+/* =====================================================
+   ROUTINE AUTOSAVE
+===================================================== */
+
+document
+    .querySelectorAll(
+        "input[type='time']"
+    )
+    .forEach(function(input) {
+
+        input.addEventListener(
+            "change",
+            saveData
+        );
+
+    });
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+showQuote();
+
+showDate();
+
+updateTimer();
+
+loadData();
+
+updatePersonalInfo();
+
+updateProgress();
+
+
+setInterval(
+    updateTimeMessage,
+    60000
+);
+
+</script>
+
+
+</body>
+
+</html>
